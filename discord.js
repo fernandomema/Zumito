@@ -1,6 +1,6 @@
 const fs = require('fs');                   // Load filesystem node library
 const path = require('path');
-const { Collection, Client } = require('discord.js');              // Load discord js library
+const { Collection, Client, IntentsBitField } = require('discord.js');              // Load discord js library
 require('better-logging')(console);         // Load better logging
 const {default: localizify} = require('localizify');         // Load localization library
 var LocalStorage = require('node-localstorage').LocalStorage;   // Load local storage library for node
@@ -9,6 +9,7 @@ const {loadCommands} = require('@modules/utils/data.js');
 console.logLevel = process.env.LOGLEVEL || 3;
 
 const client = new Client({ 
+    // TODO: Intents for future discord.js version: intents: new IntentsBitField(65535),
     intents: [
         "GUILDS", "GUILD_MESSAGES", "DIRECT_MESSAGES", 
         "GUILD_MEMBERS", "GUILD_BANS", "GUILD_EMOJIS_AND_STICKERS", 
@@ -22,6 +23,10 @@ if (process.env.DEBUG == true || process.env.DEBUG == 'true') {
     let {initializeDebug} = require('@modules/utils/debug.js');
     initializeDebug(client);
 }
+
+// TODO: Remove this library when discord.js release officially modal component.
+const discordModals = require('discord-modals') // Define the discord-modals package!
+discordModals(client);
 
 // Load languages
 const en = require('./localization/en.json');
