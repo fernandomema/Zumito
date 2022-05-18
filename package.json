@@ -42,6 +42,7 @@
     "discord-radio-player": "^1.6.0",
     "discord-together": "^1.3.3",
     "discord.js": "^13.6.0",
+    "distube": "^3.3.4",
     "dotenv": "^10.0.0",
     "duckduckgo-images-api": "^1.0.5",
     "espchatbotapi": "^2.0.6",
