@@ -44,6 +44,19 @@ module.exports = {
     },
 
     loadCommands(client, dir) {
+        const argMethods = {
+            attachment: 'addAttachmentOption',
+            boolean: 'addBooleanOption',
+            channel: 'addChannelOption',
+            integer: 'addIntegerOption',
+            mentionable: 'addMentionableOption',
+            number: 'addNumberOption',
+            role: 'addRoleOption',
+            subcommand: 'addSubcommand',
+            subcommandGroup: 'addSubcommandGroup',
+            user: 'addUserOption',
+            string: 'addStringOption'
+        }
         var commands = [];
         //return [];
         fs.readdirSync(dir, {"flag": 'rs'}).forEach(file => {
@@ -68,29 +81,9 @@ module.exports = {
                             .setDescription(('command.'+command.name+'.description').trans());
 
                         command.args?.forEach(arg => {
-                            if (arg.type == 'attachment') {
-                                command.slashCommand.addAttachmentOption( option => module.exports.setOption(option, arg) );
-                            } else if (arg.type == 'boolean') {
-                                command.slashCommand.addBooleanOption( option => module.exports.setOption(option, arg) );
-                            } else if (arg.type == 'channel') {
-                                command.slashCommand.addChannelOption( option => module.exports.setOption(option, arg) );
-                            } else if (arg.type == 'integer') {
-                                command.slashCommand.addIntegerOption( option => module.exports.setOption(option, arg) );
-                            } else if (arg.type == 'mentionable') {
-                                command.slashCommand.addMentionableOption( option => module.exports.setOption(option, arg) );
-                            } else if (arg.type == 'number') {
-                                command.slashCommand.addNumberOption( option => module.exports.setOption(option, arg) );
-                            } else if (arg.type == 'role') {
-                                command.slashCommand.addRoleOption( option => module.exports.setOption(option, arg) );
-                            } else if (arg.type == 'subcommand') {
-                                command.slashCommand.addSubcommand( option => module.exports.setOption(option, arg) );
-                            } else if (arg.type == 'subcommandGroup') {
-                                command.slashCommand.addSubcommandGroup( option => module.exports.setOption(option, arg) );
-                            } else if (arg.type == 'user') {
-                                command.slashCommand.addUserOption( option => module.exports.setOption(option, arg) );
-                            } else {
-                                command.slashCommand.addStringOption( option => module.exports.setOption(option, arg) );
-                            }
+                            command.slashCommand[argMethods[arg.type] || argMethods['string']](
+                                option => module.exports.setOption(option, arg)
+                            );
                         })
 
                     } 
