@@ -115,5 +115,6 @@
     "command.mcprofile.notFound": "This player never played on Hypixel.",
     "command.help.description": "Obtain a list of commands or information about a specific command.",
     "generic.none": "None",
-    "command.serverinfo.description": "View server information"
+    "command.serverinfo.description": "View server information",
+    "command.invite.inviteMe": "Invite me!"
 }

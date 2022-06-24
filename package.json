@@ -33,6 +33,7 @@
     "autocorrect": "^1.2.0",
     "better-logging": "^4.5.0",
     "bufferutil": "^4.0.3",
+    "canvas": "^2.9.2",
     "chalk": "^4.1.2",
     "chokidar": "^3.5.2",
     "cleverbot-free": "^1.1.6",

@@ -12,9 +12,8 @@ module.exports = {
       },
 
     botInvite: { // Set your bot invite link
-        inviteBanner: "https://media.discordapp.net/attachments/752920872318271504/879505391900295168/zumito_banner.png?width=1144&height=572",
         URLInvite: "https://zumito.ga/invite",
-        URLSupport_Server: "https://zumito.ga/server",
+        URLSupport: "https://zumito.ga/server",
         URLWebsite: "https://zumito.ga/"
     },
 
