@@ -5,45 +5,37 @@ require("@modules/localization.js");
 
 module.exports = {
 	name: "avatar",
-	description: "Get user avatar image",
 	aliases: [],
-	category: "Info",
-	ussage: null,
+	examples: [],
+	permissions: [],
+	botPermissions: [],
 	hidden: false,
 	admin: false,
 	nsfw: false,
+	cooldown: 0,
+	slashCommand: true,
+	dm: true,
+	args: [{
+		name: "user",
+		description: "Show the avatar of the mentioned user.",
+		optional: true,
+		type: "user",
+	}],
 
 	async execute(client, message, args) {
-		let avatar;
+
 		// TODO: Search for user although it is not in that guild.
-		if (message.mentions.users.size > 0) {
-			avatar = message.mentions.users.first().displayAvatarURL({ dynamic: true, size: 1024 });
-		} else {
-			avatar = message.author.displayAvatarURL({ dynamic: true, size: 1024 });
-		}
-		let user;
-		if (message.mentions.users.size > 0) {
-			user = message.mentions.users.first().username;
-		} else {
-			user = message.author.username;
-		}
+
+		let user = args.get('user')?.user || message.mentions?.users?.first() || (message.author || message.user);
 
 		const embed = new Discord.MessageEmbed()
 
-			.setAuthor({ name: 'command.avatar.author'.trans() + ' ' + user, iconURL: "" })
-			.setDescription("[Avatar URL](" + avatar + ")")
-			.setImage(avatar)
+			.setAuthor({ name: 'command.avatar.author'.trans() + ' ' + user.tag, iconURL: "" })
+			.setDescription("[Avatar URL](" + user.avatarURL({ size: 1024, dynamic: true }) + ")")
+			.setImage(user.avatarURL({ size: 1024, dynamic: true }))
 			.setColor(botConfig.embeds.color)
-			.setFooter({ 
-				text: getFooter(message.member.user.tag), 
-				iconURL: message.author.avatarURL({ dynamic: true }) 
-			})
+			.setFooter({ text: getFooter((message.author || message.member.user).tag), iconURL: (message.author || message.user).avatarURL({ dynamic: true }) })
 
-		return message.reply({
-			embeds: [embed],
-			allowedMentions: { 
-				repliedUser: false 
-			}
-		});
+		return message.reply({ embeds: [embed], allowedMentions: { repliedUser: false } });
 	}
 } 
