@@ -70,7 +70,7 @@ module.exports = {
                     command = require(`${fullPath}`);
                 } catch(error) {
                     console.error('Error loading ' + fullPath + ' command');
-                    console.error(error);
+                    console.error(error.message || error);
                 }
                 if (command !== undefined) {
                     command.category = path.basename(path.dirname(fullPath));
