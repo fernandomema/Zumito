@@ -8,6 +8,7 @@ var app = express();
 app.get(
     '/emojis',
     function (req, res) {
+        res.set('Cache-control', `public, max-age=86400`); // 24h cache
         let emojis = [];
         if (req.query.page && req.query.size) {
             emojis = paginate(Array.from(discordClient.emojis.cache.values()), req.query.size, req.query.page)
