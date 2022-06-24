@@ -6,6 +6,7 @@ const botConfig = require('@config/bot.js');
 const chalk = require('chalk');
 const emojis = require('@config/emojis.js');
 require("@modules/localization.js");
+let Error = require("@models/error.js");
 
 module.exports = {
     initializeDebug(client) {
@@ -95,7 +96,22 @@ module.exports = {
                     .setURL(url)
             );
 
-
+        let dbError = new Error({
+            type: 'command',
+            command: {
+                name: error.comid.name,
+                args: Array.from(error.comid.args)
+            },
+            error: {
+                name: error.name,
+                message: error.message,
+                stacktrace: error.stack,
+            },
+            possibleSolutions: error.possibleSolutions
+        })
+        dbError.save().then( savedDbError => {
+            console.log(savedDbError['_id']);
+        });
 
         return { 
             embeds: [embed], 

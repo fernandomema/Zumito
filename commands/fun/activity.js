@@ -9,6 +9,7 @@ module.exports = {
 	admin : false,
 	nsfw : false,
 	async execute(client, message, args) {
+        console.log(message.test.error.asd);
         if(!message.member.voice.channel) return message.reply({ content: "commands.activity.notInChannel".trans()});
         if(!args[0]) return message.reply("commands.activity.invalidActivity".trans()); 
         const discordTogether = new DiscordTogether(client);
