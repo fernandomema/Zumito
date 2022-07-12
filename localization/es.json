@@ -12,5 +12,8 @@
     "command.lang.category": "Selecciona el idioma",
     "command.prefix.description.0": "Mi prefix en este servidor es:",
     "command.prefix.description.1": "El prefix de este servidor se ha actualizado a:",
-    "command.prefix.author": "Avatar de"
+    "command.prefix.author": "Avatar de",
+    "command.userbanner.title": "Banner de",
+    "command.userbanner.fullImage": "Imagen completa",
+    "command.userbanner.clickHere": "Click aquí"
 }
