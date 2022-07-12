@@ -15,5 +15,6 @@
     "command.prefix.author": "Avatar de",
     "command.userbanner.title": "Banner de",
     "command.userbanner.fullImage": "Imagen completa",
-    "command.userbanner.clickHere": "Click aquí"
+    "command.userbanner.clickHere": "Click aquí",
+    "command.userbanner.noBanner": "no tiene banner."
 }

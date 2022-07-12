@@ -117,5 +117,6 @@
     "command.serverinfo.description": "View server information",
     "command.userbanner.title": "Banner of",
     "command.userbanner.fullImage": "Full image",
-    "command.userbanner.clickHere": "Click here"
+    "command.userbanner.clickHere": "Click here",
+    "command.userbanner.noBanner": "no banner."
 }
